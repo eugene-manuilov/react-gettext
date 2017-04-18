@@ -1,0 +1,51 @@
+{
+	"name": "react-gettext",
+	"description": "Gettext implementation for React based project.",
+	"license": "MIT",
+	"author": "Eugene Manuilov <eugene.manuilov@gmail.com>",
+	"homepage": "https://github.com/eugene-manuilov/react-gettext#readme",
+	"bugs": {
+		"url": "https://github.com/eugene-manuilov/react-gettext/issues"
+	},
+	"version": "0.1.0-dev.0",
+	"main": "lib/index",
+	"files": [
+		"*.md",
+		"dist",
+		"LICENSE",
+		"lib",
+		"src"
+	],
+	"keywords": [
+		"react",
+		"gettext",
+		"gettextjs"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/eugene-manuilov/react-gettext.git"
+	},
+	"scripts": {
+		"build": "npm run build:commonjs & npm run build:umd & npm run build:umd:min",
+		"build:commonjs": "mkdir -p lib && babel ./src -d lib",
+		"build:umd": "webpack dist/react-gettext.js",
+		"build:umd:min": "NODE_ENV=production webpack dist/react-gettext.min.js",
+		"test": "jest",
+		"prepublish": "npm run build"
+	},
+	"devDependencies": {
+		"babel-cli": "^6.24.1",
+		"babel-core": "^6.24.1",
+		"babel-jest": "^19.0.0",
+		"babel-loader": "^6.4.1",
+		"babel-preset-env": "^1.4.0",
+		"babel-preset-es2015": "^6.24.1",
+		"babel-preset-react": "^6.24.1",
+		"faker": "^4.1.0",
+		"jest": "^19.0.2",
+		"webpack": "^2.4.1"
+	},
+	"dependencies": {
+		"react": "^15.5.4"
+	}
+}
