@@ -51,10 +51,11 @@ export default function textdomain(translations, pluralForm) {
 			static ngettext(singular, plural, n) {
 				const messages = getTranslations();
 				const pluralIndex = getPluralForm(n);
+				const defaultValue = n > 1 ? plural : singular;
 
 				return Array.isArray(messages[singular]) && messages[singular][pluralIndex]
 					? messages[singular][pluralIndex]
-					: singular;
+					: defaultValue;
 			}
 
 			static xgettext(message, context) {

@@ -3,14 +3,16 @@ import faker from 'faker';
 
 import Textdomain from '../lib/index';
 
+const getComponent = () => class extends Component {
+	render() {
+		return React.Children.only(this.props.children);
+	}
+};
+
 describe('Higher-order component', () => {
 	const name = faker.lorem.word();
-	const baseComponent = class extends Component {
-		render() {
-			return null;
-		}
-	};
 
+	const baseComponent = getComponent();
 	baseComponent.displayName = name;
 
 	const hoc = Textdomain({}, '')(baseComponent);
@@ -36,8 +38,13 @@ describe('Higher-order component', () => {
 		expect(typeof hoc.ngettext).toBe('function');
 		expect(typeof hoc.xgettext).toBe('function');
 	});
+});
 
-	test('instance return context types', () => {
+describe('Higher-order component instance', () => {
+	const baseComponent = getComponent();
+	const hoc = Textdomain({}, '')(baseComponent);
+
+	test('returns child context', () => {
 		const hocObject = new hoc({});
 		expect(hocObject.getChildContext()).toEqual({
 			gettext: hoc.gettext,
