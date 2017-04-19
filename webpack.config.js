@@ -10,8 +10,18 @@ config.entry = './index.js';
 
 // output
 config.output = {
-	library: "ReduxWordPress",
+	library: "ReactGettext",
 	libraryTarget: 'umd'
+};
+
+// define externals
+config.externals = {
+	react: {
+		root: 'React',
+		commonjs2: 'react',
+		commonjs: 'react',
+		amd: 'react'
+	}
 };
 
 // define module and plugins

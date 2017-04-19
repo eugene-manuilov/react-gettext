@@ -23,7 +23,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/eugene-manuilov/react-gettext.git"
+		"url": "git@github.com:eugene-manuilov/react-gettext.git"
 	},
 	"scripts": {
 		"build": "npm run build:commonjs & npm run build:umd & npm run build:umd:min",
@@ -43,9 +43,10 @@
 		"babel-preset-react": "^6.24.1",
 		"faker": "^4.1.0",
 		"jest": "^19.0.2",
+		"react": "^0.14.0",
 		"webpack": "^2.4.1"
 	},
-	"dependencies": {
-		"react": "^15.5.4"
+	"peerDependencies": {
+		"react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0"
 	}
 }
