@@ -1,5 +1,9 @@
-import withGettext from '../lib/index';
+import Textdomain from '../lib/index';
 
 test('Test default export', () => {
-	expect(typeof withGettext).toBe('function');
+	expect(typeof Textdomain).toBe('function');
+});
+
+test('Test HOF returns HOC function', () => {
+	expect(typeof Textdomain({}, '')).toBe('function');
 });
