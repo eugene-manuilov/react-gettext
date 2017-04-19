@@ -1,18 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 
 export default function textdomain(translations, pluralForm) {
-
 	const EOT = '\u0004'; // End of Transmission
 
-	const getTranslations = () => {
+	const getTranslations = function () {
 		// if translations is function, call it to get translations object,
 		// otherwise just use incoming translations object
 		return typeof translations === 'function' ? translations() : translations;
 	};
 
-	const getPluralForm = n => {
+	const getPluralForm = (n) => {
 		// return 0 if n is not integer
-		if (isNaN(parseInt(n))) {
+		if (isNaN(parseInt(n, 10))) {
 			return 0;
 		}
 
@@ -24,52 +23,50 @@ export default function textdomain(translations, pluralForm) {
 		// if pluralForm is string and contains only "n", "0-9", " ", "=?:%+-/*><&|"
 		// characters, then we can eval it to calculate plural form
 		if (typeof pluralForm === 'string' && !pluralForm.match(/[^n0-9 =?:%+-/*><&|]/i)) {
+			/* eslint-disable no-eval */
 			return eval(pluralForm.toLowerCase().split('n').join(n));
+			/* eslint-enable no-eval */
 		}
 
 		return 0;
 	};
 
 	// return HOC function
-	return WrappedComponent => {
-
+	return (WrappedComponent) => {
 		const WithGettext = class extends Component {
-
 			getChildContext() {
-				const self = this;
 				return {
-					gettext: self.gettext.bind(self),
-					ngettext: self.ngettext.bind(self),
-					xgettext: self.xgettext.bind(self)
+					gettext: WithGettext.gettext,
+					ngettext: WithGettext.ngettext,
+					xgettext: WithGettext.xgettext,
 				};
 			}
 
-			gettext(message) {
-				const _translations_ = getTranslations();
+			static gettext(message) {
+				const messages = getTranslations();
 
-				return _translations_[message] ? _translations_[message] : message;
+				return messages[message] ? messages[message] : message;
 			}
 
-			ngettext(singular, plural, n) {
-				const _translations_ = getTranslations();
+			static ngettext(singular, plural, n) {
+				const messages = getTranslations();
 				const pluralIndex = getPluralForm(n);
 
-				return Array.isArray(_translations_[singular]) && _translations_[singular][pluralIndex]
-					? _translations_[singular][pluralIndex]
+				return Array.isArray(messages[singular]) && messages[singular][pluralIndex]
+					? messages[singular][pluralIndex]
 					: singular;
 			}
 
-			xgettext(message, context) {
-				const _translations_ = getTranslations();
+			static xgettext(message, context) {
+				const messages = getTranslations();
 				const key = context + EOT + message;
 
-				return _translations_[key] ? _translations_[key] : message;
+				return messages[key] ? messages[key] : message;
 			}
 
 			render() {
-				return <WrappedComponent {...this.props} />
+				return <WrappedComponent {...this.props} />;
 			}
-
 		};
 
 		WithGettext.displayName = `WithGettext(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
@@ -77,11 +74,9 @@ export default function textdomain(translations, pluralForm) {
 		WithGettext.childContextTypes = {
 			gettext: PropTypes.func,
 			ngettext: PropTypes.func,
-			xgettext: PropTypes.func
+			xgettext: PropTypes.func,
 		};
 
 		return WithGettext;
-
 	};
-
 }
