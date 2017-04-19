@@ -24,7 +24,7 @@ export default function textdomain(translations, pluralForm) {
 		// characters, then we can eval it to calculate plural form
 		if (typeof pluralForm === 'string' && !pluralForm.match(/[^n0-9 =?:%+-/*><&|]/i)) {
 			/* eslint-disable no-eval */
-			return eval(pluralForm.toLowerCase().split('n').join(n));
+			return +eval(pluralForm.toLowerCase().split('n').join(n));
 			/* eslint-enable no-eval */
 		}
 
