@@ -50,10 +50,17 @@
 		"eslint-plugin-react": "^6.10.3",
 		"faker": "^4.1.0",
 		"jest": "^19.0.2",
-		"react": "^0.14.0",
+		"prop-types": "^15.5.8",
+		"react": "^15.5.4",
+		"react-dom": "^15.5.4",
+		"react-test-renderer": "^15.5.4",
 		"webpack": "^2.4.1"
 	},
 	"peerDependencies": {
-		"react": "^0.14.0 || ^15.0.0-0 || ^16.0.0-0"
+		"prop-types": "^15.0.0-0 || ^16.0.0-0",
+		"react": "^15.0.0-0 || ^16.0.0-0"
+	},
+	"dependencies": {
+		"hoist-non-react-statics": "^1.2.0"
 	}
 }

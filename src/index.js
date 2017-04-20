@@ -1,4 +1,6 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import hoistNonReactStatic from 'hoist-non-react-statics';
 
 export default function textdomain(translations, pluralForm) {
 	const EOT = '\u0004'; // End of Transmission
@@ -33,15 +35,7 @@ export default function textdomain(translations, pluralForm) {
 
 	// return HOC function
 	return (WrappedComponent) => {
-		const WithGettext = class extends Component {
-			getChildContext() {
-				return {
-					gettext: WithGettext.gettext,
-					ngettext: WithGettext.ngettext,
-					xgettext: WithGettext.xgettext,
-				};
-			}
-
+		class WithGettext extends Component {
 			static gettext(message) {
 				const messages = getTranslations();
 
@@ -65,10 +59,18 @@ export default function textdomain(translations, pluralForm) {
 				return messages[key] ? messages[key] : message;
 			}
 
-			render() {
-				return <WrappedComponent {...this.props} />;
+			getChildContext() {
+				return {
+					gettext: WithGettext.gettext,
+					ngettext: WithGettext.ngettext,
+					xgettext: WithGettext.xgettext,
+				};
 			}
-		};
+
+			render() {
+				return React.createElement(WrappedComponent, this.props);
+			}
+		}
 
 		WithGettext.displayName = `WithGettext(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
@@ -78,6 +80,6 @@ export default function textdomain(translations, pluralForm) {
 			xgettext: PropTypes.func,
 		};
 
-		return WithGettext;
+		return hoistNonReactStatic(WithGettext, WrappedComponent);
 	};
 }

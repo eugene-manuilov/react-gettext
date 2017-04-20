@@ -21,6 +21,9 @@ config.externals = {
 		commonjs2: 'react',
 		commonjs: 'react',
 		amd: 'react'
+	},
+	propTypes: {
+		root: 'PropTypes'
 	}
 };
 
