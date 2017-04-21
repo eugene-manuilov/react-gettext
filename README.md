@@ -90,6 +90,7 @@ After doing it you can start using `gettext`, `ngettext` and `xgettext` function
 +     ngettext: PropTypes.func.isRequired,
 +     xgettext: PropTypes.func.isRequired
 + };
+```
 
 ## Documentation
 
