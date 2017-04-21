@@ -7,7 +7,7 @@ Tiny React library for implementing gettext localization in your application. It
 React Gettext requires **React 15.0 or later**.
 
 ```
-@todo add installation command here after publishing on npmjs.org
+npm install react-gettext --save
 ```
 
 ## Usage
@@ -174,6 +174,10 @@ this.context.xgettext('some text', 'context where this message is used');
 ## Poedit
 
 If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c` as keywords list to properly parse and extract strings from your javascript files.
+
+## Contribute
+
+What to help or have a suggestion? Open a [new ticket](https://github.com/eugene-manuilov/react-gettext/issues/new) and we can discuss it or submit pull request. Please, make sure you run `npm run test` before submitting a pull request.
 
 ## License
 
