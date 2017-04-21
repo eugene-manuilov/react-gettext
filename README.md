@@ -164,6 +164,13 @@ The function to translate a string based on a specific context. Accepts a messag
 - **message**: A string to be translated.
 - **context**: A context to search translation in.
 
+Example:
+
+```javascript
+// somewhere in your jsx component
+this.context.xgettext('some text', 'context where this message is used');
+```
+
 ## Poedit
 
 If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c` as keywords list to properly parse and extract strings from your javascript files.
