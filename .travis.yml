@@ -2,9 +2,5 @@ language: node_js
 node_js:
   - "6"
 
-before_install:
-  - "yarn"
-  - "npm run build"
-
 script:
   - "npm test"
