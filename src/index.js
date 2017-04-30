@@ -59,11 +59,16 @@ export default function textdomain(translations, pluralForm) {
 				return messages[key] ? messages[key] : message;
 			}
 
+			static nxgettext(singular, plural, n, context) {
+				return WithGettext.ngettex(singular, plural, n);
+			}
+
 			getChildContext() {
 				return {
 					gettext: WithGettext.gettext,
 					ngettext: WithGettext.ngettext,
 					xgettext: WithGettext.xgettext,
+					nxgettext: WithGettext.nxgettext
 				};
 			}
 
@@ -78,6 +83,7 @@ export default function textdomain(translations, pluralForm) {
 			gettext: PropTypes.func,
 			ngettext: PropTypes.func,
 			xgettext: PropTypes.func,
+			nxgettext: PropTypes.func
 		};
 
 		return hoistNonReactStatic(WithGettext, WrappedComponent);
