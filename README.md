@@ -1,5 +1,7 @@
 # react-gettext 0.3.0
 
+[![Build Status](https://travis-ci.org/eugene-manuilov/react-gettext.svg?branch=master)](https://travis-ci.org/eugene-manuilov/react-gettext)
+
 Tiny React library for implementing gettext localization in your application. It provides HOC function to enhance your application by exposing gettext functions in the context scope.
 
 ## Instalation
@@ -177,7 +179,7 @@ If you use Poedit app to translate your messages, then you can use `gettext;nget
 
 ## Contribute
 
-What to help or have a suggestion? Open a [new ticket](https://github.com/eugene-manuilov/react-gettext/issues/new) and we can discuss it or submit pull request. Please, make sure you run `npm run test` before submitting a pull request.
+What to help or have a suggestion? Open a [new ticket](https://github.com/eugene-manuilov/react-gettext/issues/new) and we can discuss it or submit pull request. Please, make sure you run `npm test` before submitting a pull request.
 
 ## License
 

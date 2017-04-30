@@ -1,0 +1,6 @@
+language: javascript
+before_install:
+  - "yarn"
+  - "npm run build"
+script:
+  - "npm test"
