@@ -1,4 +1,4 @@
-# react-gettext
+# react-gettext 0.3.0
 
 Tiny React library for implementing gettext localization in your application. It provides HOC function to enhance your application by exposing gettext functions in the context scope.
 
