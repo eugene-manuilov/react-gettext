@@ -175,7 +175,7 @@ this.context.xgettext('some text', 'context where this message is used');
 
 ## Poedit
 
-If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c` as keywords list to properly parse and extract strings from your javascript files.
+If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c` as keywords list to properly parse and extract strings from your javascript files.
 
 ## Contribute
 

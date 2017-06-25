@@ -30,7 +30,8 @@ describe('Higher-order component', () => {
 		expect(hoc.childContextTypes).toEqual({
 			gettext: PropTypes.func,
 			ngettext: PropTypes.func,
-			xgettext: PropTypes.func
+			xgettext: PropTypes.func,
+			nxgettext: PropTypes.func,
 		});
 	});
 
@@ -38,6 +39,7 @@ describe('Higher-order component', () => {
 		expect(typeof hoc.gettext).toBe('function');
 		expect(typeof hoc.ngettext).toBe('function');
 		expect(typeof hoc.xgettext).toBe('function');
+		expect(typeof hoc.nxgettext).toBe('function');
 	});
 });
 
@@ -50,7 +52,8 @@ describe('Higher-order component instance', () => {
 		expect(hocObject.getChildContext()).toEqual({
 			gettext: hoc.gettext,
 			ngettext: hoc.ngettext,
-			xgettext: hoc.xgettext
+			xgettext: hoc.xgettext,
+			nxgettext: hoc.nxgettext,
 		});
 	});
 });

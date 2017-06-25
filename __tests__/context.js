@@ -17,15 +17,19 @@ class C1 extends Component {
 			<ul>
 				<li>
 					<h1>gettext:</h1>
-					<span>{this.context.gettext(this.props.gettext)}</span>
+					<span>{this.context.gettext('thiwwext')}</span>
 				</li>
 				<li>
 					<h1>xgettext:</h1>
-					<span>{this.context.xgettext(this.props.xgettext, this.props.context)}</span>
+					<span>{this.context.xgettext('thfefeext', 'twfwfwtext')}</span>
 				</li>
 				<li>
 					<h1>ngettext:</h1>
-					<span>{this.context.ngettext(this.props.singular, this.props.plural, this.props.num)}</span>
+					<span>{this.context.ngettext('fefengular', 'thfeferal', this.props.num)}</span>
+				</li>
+				<li>
+					<h1>nxgettext</h1>
+					<span>{this.context.nxgettext('single', 'two', 4, 'test context')}</span>
 				</li>
 			</ul>
 		);
@@ -35,7 +39,8 @@ class C1 extends Component {
 C1.contextTypes = {
 	gettext: PropTypes.func.isRequired,
 	xgettext: PropTypes.func.isRequired,
-	ngettext: PropTypes.func.isRequired
+	ngettext: PropTypes.func.isRequired,
+	nxgettext: PropTypes.func.isRequired,
 };
 
 test('Child component can use context functions', () => {

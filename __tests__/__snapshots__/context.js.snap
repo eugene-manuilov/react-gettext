@@ -7,7 +7,7 @@ exports[`Child component can use context functions 1`] = `
       gettext:
     </h1>
     <span>
-      7[|UyK-%T\`CKw-%j $1/6XTzdd(8+cY,/JCngNVv+wQO6NAv:+^=4GA[,+G@^GI&lt;
+      thiwwext
     </span>
   </li>
   <li>
@@ -15,7 +15,7 @@ exports[`Child component can use context functions 1`] = `
       xgettext:
     </h1>
     <span>
-      T6%(h7m%J*O(Bm6!FiRk0 9;V]r\`kPz-ROW7E8*t.Aki9}j=hU9xfU8X|.7wEuZ0
+      thfefeext
     </span>
   </li>
   <li>
@@ -23,7 +23,15 @@ exports[`Child component can use context functions 1`] = `
       ngettext:
     </h1>
     <span>
-      ZgcaUXD7&lt;qhRY#&gt;A~@-\`y2%xm@t{TLsN1LvUL\`6zamv|e}G|rY\`ms-|aMxn#_2f{
+      thfeferal
+    </span>
+  </li>
+  <li>
+    <h1>
+      nxgettext
+    </h1>
+    <span>
+      two
     </span>
   </li>
 </ul>
