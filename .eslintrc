@@ -4,6 +4,6 @@
 		"func-names": 0,
 		"no-tabs": 0,
 		"react/jsx-filename-extension": 0,
-		"indent": ["error", "tab"]
+		"indent": [2, "tab"]
 	}
 }

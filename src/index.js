@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 
-export default function textdomain(translations, pluralForm) {
+export default function withGettext(translations, pluralForm) {
 	const EOT = '\u0004'; // End of Transmission
 
 	const getTranslations = function () {
@@ -77,7 +77,7 @@ export default function textdomain(translations, pluralForm) {
 			}
 		}
 
-		WithGettext.displayName = `WithGettext(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+		WithGettext.displayName = `withGettext(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
 
 		WithGettext.childContextTypes = {
 			gettext: PropTypes.func,
