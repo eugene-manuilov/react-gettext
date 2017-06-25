@@ -32,11 +32,13 @@ class Textdomain extends Component {
 		}
 
 		// if pluralForm is string and contains only "n", "0-9", " ", "=?:%+-/*><&|"
-		// characters, then we can eval it to calculate plural form
+		// characters, then we can "eval" it to calculate plural form
 		if (typeof plural === 'string' && !plural.match(/[^n0-9 =?:%+-/*><&|]/i)) {
-			/* eslint-disable no-eval */
-			return 0 + eval(plural.toLowerCase().split('n').join(n));
-			/* eslint-enable no-eval */
+			/* eslint-disable no-new-func */
+			const fnc = Function('n', `return ${plural}`);
+			/* eslint-enable no-new-func */
+
+			return +fnc(n);
 		}
 
 		return 0;
@@ -118,7 +120,7 @@ Textdomain.defaultProps = {
 	children: [],
 };
 
-Textdomain.contextTypes = {
+Textdomain.childContextTypes = {
 	gettext: PropTypes.func,
 	ngettext: PropTypes.func,
 	xgettext: PropTypes.func,
