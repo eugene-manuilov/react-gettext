@@ -19,10 +19,11 @@ describe('Higher-order-component', () => {
 	const name = faker.lorem.word();
 	baseComponent.displayName = name;
 
+	const plural = 'n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2';
 	const catalog = {
 	};
 
-	const Textdomain = withGettext(catalog, 'n != 1')(baseComponent);
+	const Textdomain = withGettext(catalog, plural)(baseComponent);
 
 	test('is React component', () => {
 		expect(Component.isPrototypeOf(Textdomain)).toBeTruthy();
@@ -39,5 +40,12 @@ describe('Higher-order-component', () => {
 			xgettext: PropTypes.func,
 			nxgettext: PropTypes.func,
 		});
+	});
+
+	test('properly calculates plural form', () => {
+		const instance = new Textdomain({plural});
+		expect(instance.getPluralForm(1)).toBe(0);
+		expect(instance.getPluralForm(2)).toBe(1);
+		expect(instance.getPluralForm(5)).toBe(2);
 	});
 });

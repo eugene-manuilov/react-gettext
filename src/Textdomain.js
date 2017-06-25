@@ -31,13 +31,12 @@ class Textdomain extends Component {
 			return plural(n);
 		}
 
-		// if pluralForm is string and contains only "n", "0-9", " ", "=?:%+-/*><&|"
+		// if pluralForm is string and contains only "n", "0-9", " ", "!=?:%+-/*><&|()"
 		// characters, then we can "eval" it to calculate plural form
-		if (typeof plural === 'string' && !plural.match(/[^n0-9 =?:%+-/*><&|]/i)) {
+		if (typeof plural === 'string' && !plural.match(/[^n0-9 !=?:%+-/*><&|()]/i)) {
 			/* eslint-disable no-new-func */
 			const fnc = Function('n', `return ${plural}`);
 			/* eslint-enable no-new-func */
-
 			return +fnc(n);
 		}
 
