@@ -6,10 +6,10 @@ class Textdomain extends Component {
 	getChildContext() {
 		const self = this;
 		return {
-			gettext: self.gettext,
-			xgettext: self.xgettext,
-			ngettext: self.ngettext,
-			nxgettext: self.nxgettext,
+			gettext: self.gettext.bind(this),
+			xgettext: self.xgettext.bind(this),
+			ngettext: self.ngettext.bind(this),
+			nxgettext: self.nxgettext.bind(this),
 		};
 	}
 
@@ -62,7 +62,7 @@ class Textdomain extends Component {
 
 		return Object.prototype.hasOwnProperty.call(messages, singular)
 				&& Array.isArray(messages[singular])
-				&& messages[singular].length >= pluralIndex
+				&& messages[singular].length > pluralIndex
 				&& pluralIndex >= 0
 			? messages[singular][pluralIndex]
 			: defaultValue;
@@ -89,7 +89,7 @@ class Textdomain extends Component {
 
 		return Object.prototype.hasOwnProperty.call(messages, key)
 				&& Array.isArray(messages[key])
-				&& messages[key].length >= pluralIndex
+				&& messages[key].length > pluralIndex
 				&& pluralIndex >= 0
 			? messages[key][pluralIndex]
 			: defaultValue;
@@ -104,7 +104,10 @@ class Textdomain extends Component {
 Textdomain.propTypes = {
 	catalog: PropTypes.oneOfType([
 		PropTypes.func,
-		PropTypes.objectOf(PropTypes.string),
+		PropTypes.objectOf(PropTypes.oneOfType([
+			PropTypes.string,
+			PropTypes.arrayOf(PropTypes.string),
+		])),
 	]),
 	plural: PropTypes.oneOfType([
 		PropTypes.func,

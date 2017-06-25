@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
-import { mount } from 'enzyme';
 import faker from 'faker';
 
 import withGettext from '../lib/index';
@@ -8,11 +7,7 @@ import withGettext from '../lib/index';
 describe('Higher-order-component', () => {
 	class baseComponent extends Component {
 		render() {
-			return (
-				<div>
-
-				</div>
-			);
+			return this.props.children;
 		}
 	};
 
@@ -20,10 +15,7 @@ describe('Higher-order-component', () => {
 	baseComponent.displayName = name;
 
 	const plural = 'n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2';
-	const catalog = {
-	};
-
-	const Textdomain = withGettext(catalog, plural)(baseComponent);
+	const Textdomain = withGettext({}, plural)(baseComponent);
 
 	test('is React component', () => {
 		expect(Component.isPrototypeOf(Textdomain)).toBeTruthy();
