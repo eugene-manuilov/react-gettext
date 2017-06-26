@@ -3,7 +3,9 @@
 	"rules": {
 		"func-names": 0,
 		"no-tabs": 0,
-		"react/jsx-filename-extension": 0,
-		"indent": ["error", "tab"]
+		"max-len": 1,
+		"class-methods-use-this": 0,
+		"indent": [2, "tab"],
+		"react/jsx-filename-extension": 0
 	}
 }
