@@ -6,10 +6,12 @@ Tiny React library for implementing gettext localization in your application. It
 
 ## Instalation
 
-React Gettext requires **React 15.0 or later**.
+React Gettext requires **React 15.0 or later**. You can add this package using following commands
 
 ```
 npm install react-gettext --save
+// or
+yarn add react-gettext
 ```
 
 ## Usage
@@ -74,7 +76,8 @@ After doing it you can start using `gettext`, `ngettext` and `xgettext` function
 ```diff
   // Header.js
 - import React, { Component } from 'react';
-+ import React, { Component, PropTypes } from 'react';
++ import React, { Component } from 'react';
++ import PropTypes from 'prop-types';
 
   export default class Header extends Component {
 
@@ -90,7 +93,8 @@ After doing it you can start using `gettext`, `ngettext` and `xgettext` function
 + Header.contextTypes = {
 +     gettext: PropTypes.func.isRequired,
 +     ngettext: PropTypes.func.isRequired,
-+     xgettext: PropTypes.func.isRequired
++     xgettext: PropTypes.func.isRequired,
++     nxgettext: PropTypes.func.isRequired,
 + };
 ```
 
@@ -171,6 +175,22 @@ Example:
 ```javascript
 // somewhere in your jsx component
 this.context.xgettext('some text', 'context where this message is used');
+```
+
+### nxgettext(singular, plural, n, context)
+
+The function to translate plural string based on a specific context. Accepts singular and plural messages along with a number to calculate plural form against and context string. Returns translated message based on plural form if it exists, otherwise original message based on **n** value.
+
+- **singular**: a string to be translated when count is not plural
+- **plural**: a string to be translated when count is plural
+- **n**: a number to count plural form
+- **context**: A context to search translation in.
+
+Example:
+
+```javascript
+// somewhere in your jsx component
+this.context.nxgettext('day ago', 'days ago', numberOfDays, 'Article publish date');
 ```
 
 ## Poedit
