@@ -6,11 +6,13 @@ Tiny React library for implementing gettext localization in your application. It
 
 ## Instalation
 
-React Gettext requires **React 15.0 or later**. You can add this package using following commands
+React Gettext requires **React 15.0 or later**. You can add this package using following commands:
 
 ```
 npm install react-gettext --save
-// or
+```
+
+```
 yarn add react-gettext
 ```
 
@@ -71,7 +73,7 @@ To make it translatable you need to update your `app.js` file to use HOC functio
 + export default Textdomain({...}, 'n != 1')(App);
 ```
 
-After doing it you can start using `gettext`, `ngettext` and `xgettext` functions in your descending components:
+After doing it you can start using `gettext`, `ngettext`, `xgettext` and `nxgettext` functions in your descending components:
 
 ```diff
   // Header.js
@@ -195,7 +197,9 @@ this.context.nxgettext('day ago', 'days ago', numberOfDays, 'Article publish dat
 
 ## Poedit
 
-If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c` as keywords list to properly parse and extract strings from your javascript files. Here is an example of a **POT** file which you can start with:
+If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c` as keywords list to properly parse and extract strings from your javascript files.
+
+Here is an example of a **POT** file which you can start with:
 
 ```
 msgid ""
