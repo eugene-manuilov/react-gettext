@@ -5,11 +5,12 @@ class Textdomain extends Component {
 
 	getChildContext() {
 		const self = this;
+
 		return {
-			gettext: self.gettext.bind(this),
-			xgettext: self.xgettext.bind(this),
-			ngettext: self.ngettext.bind(this),
-			nxgettext: self.nxgettext.bind(this),
+			gettext: self.gettext.bind(self),
+			xgettext: self.xgettext.bind(self),
+			ngettext: self.ngettext.bind(self),
+			nxgettext: self.nxgettext.bind(self),
 		};
 	}
 
@@ -35,9 +36,9 @@ class Textdomain extends Component {
 		// characters, then we can "eval" it to calculate plural form
 		if (typeof plural === 'string' && !plural.match(/[^n0-9 !=?:%+-/*><&|()]/i)) {
 			/* eslint-disable no-new-func */
-			const fnc = Function('n', `return ${plural}`);
+			const calcPlural = Function('n', `return ${plural}`);
 			/* eslint-enable no-new-func */
-			return +fnc(n);
+			return +calcPlural(n);
 		}
 
 		return 0;
