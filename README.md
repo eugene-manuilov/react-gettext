@@ -195,7 +195,24 @@ this.context.nxgettext('day ago', 'days ago', numberOfDays, 'Article publish dat
 
 ## Poedit
 
-If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c` as keywords list to properly parse and extract strings from your javascript files.
+If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c` as keywords list to properly parse and extract strings from your javascript files. Here is an example of a **POT** file which you can start with:
+
+```
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ./src\n"
+"X-Poedit-KeywordsList: gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+```
 
 ## Contribute
 
