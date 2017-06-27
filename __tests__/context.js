@@ -1,68 +1,149 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { mount } from 'enzyme';
 import faker from 'faker';
-import renderer from 'react-test-renderer';
 
-import Textdomain from '../lib/index';
+import withGettext from '../lib/index';
 
-class App extends Component {
-	render() {
-		return <C1 {...this.props} />;
-	}
-};
+describe('Higher-order-component translates', () => {
+	const pluralForm = 'n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2';
+	const catalog = {};
 
-class C1 extends Component {
-	render() {
-		return (
-			<ul>
-				<li>
-					<h1>gettext:</h1>
-					<span>{this.context.gettext(this.props.gettext)}</span>
-				</li>
-				<li>
-					<h1>xgettext:</h1>
-					<span>{this.context.xgettext(this.props.xgettext, this.props.context)}</span>
-				</li>
-				<li>
-					<h1>ngettext:</h1>
-					<span>{this.context.ngettext(this.props.singular, this.props.plural, this.props.num)}</span>
-				</li>
-			</ul>
-		);
-	}
-};
+	const gettext1 = faker.lorem.sentence();
+	const gettext2 = faker.lorem.sentence();
+	catalog[gettext1] = faker.lorem.sentence();
 
-C1.contextTypes = {
-	gettext: PropTypes.func.isRequired,
-	xgettext: PropTypes.func.isRequired,
-	ngettext: PropTypes.func.isRequired
-};
-
-test('Child component can use context functions', () => {
-	const po = {};
-	const sentence1 = faker.lorem.sentence();
-	const sentence2 = faker.lorem.sentence();
-	const sentence3 = faker.lorem.sentence();
-	const sentence4 = faker.lorem.sentence();
-	const sentence5 = faker.lorem.sentence();
-
-	po[sentence1] = '7[|UyK-%T`CKw-%j $1/6XTzdd(8+cY,/JCngNVv+wQO6NAv:+^=4GA[,+G@^GI<';
-	po[`${sentence3}\u0004${sentence2}`] = 'T6%(h7m%J*O(Bm6!FiRk0 9;V]r`kPz-ROW7E8*t.Aki9}j=hU9xfU8X|.7wEuZ0';
-	po[sentence4] = [
-		'ZgcaUXD7<qhRY#>A~@-`y2%xm@t{TLsN1LvUL`6zamv|e}G|rY`ms-|aMxn#_2f{',
-		'v.,rfN>-w1>j#KBX%eRO[nm@|MgGv,8E.o8-|`t.9Sz{9n#k=+V?W.#k@/tjWq|>'
+	const single1 = faker.lorem.sentence();
+	const plural1 = faker.lorem.sentence();
+	catalog[single1] = [
+		faker.lorem.sentence(),
+		faker.lorem.sentence(),
+		faker.lorem.sentence(),
 	];
 
-	const hoc = Textdomain(po, 'n!=1')(App);
-	const component = renderer.create(React.createElement(hoc, {
-		gettext: sentence1,
-		xgettext: sentence2,
-		context: sentence3,
-		singular: sentence4,
-		plural: sentence5,
-		num: 2
-	}, []));
+	const single2 = faker.lorem.sentence();
+	const plural2 = faker.lorem.sentence();
 
-	let tree = component.toJSON();
-	expect(tree).toMatchSnapshot();
+	const context1 = faker.lorem.sentence();
+	const gettext3 = faker.lorem.sentence();
+	const contextKey1 = `${context1}\u0004${gettext3}`;
+	catalog[contextKey1] = faker.lorem.sentence();
+
+	const context2 = faker.lorem.sentence();
+	const gettext4 = faker.lorem.sentence();
+
+	const single3 = faker.lorem.sentence();
+	const plural3 = faker.lorem.sentence();
+	const context3 = faker.lorem.sentence();
+	const contextKey2 = `${context3}\u0004${single3}`;
+	catalog[contextKey2] = [
+		faker.lorem.sentence(),
+		faker.lorem.sentence(),
+		faker.lorem.sentence(),
+	];
+
+	const single4 = faker.lorem.sentence();
+	const plural4 = faker.lorem.sentence();
+	const context4 = faker.lorem.sentence();
+
+	class baseComponent extends Component {
+		render() {
+			const { type, num } = this.props;
+
+			let message = '';
+			switch (type) {
+				case 'gettext1':
+					message = this.context.gettext(gettext1);
+					break;
+				case 'gettext2':
+					message = this.context.gettext(gettext2);
+					break;
+				case 'ngettext1':
+					message = this.context.ngettext(single1, plural1, num);
+					break;
+				case 'ngettext2':
+					message = this.context.ngettext(single2, plural2, num);
+					break;
+				case 'xgettext1':
+					message = this.context.xgettext(gettext3, context1);
+					break;
+				case 'xgettext2':
+					message = this.context.xgettext(gettext4, context2);
+					break;
+				case 'nxgettext1':
+					message = this.context.nxgettext(single3, plural3, num, context3);
+					break;
+				case 'nxgettext2':
+					message = this.context.nxgettext(single4, plural4, num, context4);
+					break;
+			}
+
+			return <div>{message}</div>;
+		}
+	};
+
+	baseComponent.contextTypes = {
+		gettext: PropTypes.func.isRequired,
+		xgettext: PropTypes.func.isRequired,
+		ngettext: PropTypes.func.isRequired,
+		nxgettext: PropTypes.func.isRequired,
+	};
+
+	const Textdomain = withGettext(catalog, pluralForm)(baseComponent);
+
+	test('gettext', () => {
+		let wrapper;
+
+		// check when translation exists
+		wrapper = mount(<Textdomain type="gettext1" />);
+		expect(wrapper.text()).toBe(catalog[gettext1]);
+
+		// check when translation exists
+		wrapper = mount(<Textdomain type="gettext2" />);
+		expect(wrapper.text()).toBe(gettext2);
+	});
+
+	test('ngettext', () => {
+		let wrapper;
+
+		// check when translation exists
+		for (let i = 0; i < 3; i++) {
+			wrapper = mount(<Textdomain type="ngettext1" num={i == 0 ? 1 : (i == 1 ? 2 : 5)} />);
+			expect(wrapper.text()).toBe(catalog[single1][i]);
+		}
+
+		// check fallbacks when a translation doesn't exist
+		for (let i = 0; i < 2; i++) {
+			wrapper = mount(<Textdomain type="ngettext2" num={i + 1} />);
+			expect(wrapper.text()).toBe(i == 0 ? single2 : plural2);
+		}
+	});
+
+	test('xgettext', () => {
+		let wrapper;
+
+		// check when translation exists
+		wrapper = mount(<Textdomain type="xgettext1" />);
+		expect(wrapper.text()).toBe(catalog[contextKey1]);
+
+		// check when translation exists
+		wrapper = mount(<Textdomain type="xgettext2" />);
+		expect(wrapper.text()).toBe(gettext4);
+	});
+
+	test('ngettext', () => {
+		let wrapper;
+
+		// check when translation exists
+		for (let i = 0; i < 3; i++) {
+			wrapper = mount(<Textdomain type="nxgettext1" num={i == 0 ? 1 : (i == 1 ? 2 : 5)} />);
+			expect(wrapper.text()).toBe(catalog[contextKey2][i]);
+		}
+
+		// check fallbacks when a translation doesn't exist
+		for (let i = 0; i < 2; i++) {
+			wrapper = mount(<Textdomain type="nxgettext2" num={i + 1} />);
+			expect(wrapper.text()).toBe(i == 0 ? single4 : plural4);
+		}
+	});
 });
