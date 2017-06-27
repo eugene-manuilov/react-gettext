@@ -6,10 +6,14 @@ Tiny React library for implementing gettext localization in your application. It
 
 ## Instalation
 
-React Gettext requires **React 15.0 or later**.
+React Gettext requires **React 15.0 or later**. You can add this package using following commands:
 
 ```
 npm install react-gettext --save
+```
+
+```
+yarn add react-gettext
 ```
 
 ## Usage
@@ -57,7 +61,7 @@ To make it translatable you need to update your `app.js` file to use HOC functio
 ```diff
   // app.js
   import React, { Component } from 'react';
-+ import Textdomain from 'react-gettext';
++ import withGettext from 'react-gettext';
   import Header from './Header';
   import Footer from './Footer';
 
@@ -66,15 +70,16 @@ To make it translatable you need to update your `app.js` file to use HOC functio
       ...
   }
 
-+ export default Textdomain({...}, 'n != 1')(App);
++ export default withGettext({...}, 'n != 1')(App);
 ```
 
-After doing it you can start using `gettext`, `ngettext` and `xgettext` functions in your descending components:
+After doing it you can start using `gettext`, `ngettext`, `xgettext` and `nxgettext` functions in your descending components:
 
 ```diff
   // Header.js
 - import React, { Component } from 'react';
-+ import React, { Component, PropTypes } from 'react';
++ import React, { Component } from 'react';
++ import PropTypes from 'prop-types';
 
   export default class Header extends Component {
 
@@ -90,13 +95,14 @@ After doing it you can start using `gettext`, `ngettext` and `xgettext` function
 + Header.contextTypes = {
 +     gettext: PropTypes.func.isRequired,
 +     ngettext: PropTypes.func.isRequired,
-+     xgettext: PropTypes.func.isRequired
++     xgettext: PropTypes.func.isRequired,
++     nxgettext: PropTypes.func.isRequired,
 + };
 ```
 
 ## Documentation
 
-### Textdomain(translations, pluralForms)
+### withGettext(translations, pluralForms)
 
 Higher-order function which is exported by default from `react-gettext` package. It accepts two arguments and returns function to create higher-order component.
 
@@ -113,7 +119,7 @@ const translations = {
 
 const pluralForms = '(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'; // 3 plural forms for Russian, Belarusian, Bosnian, Croatian, Serbian, Ukrainian, etc.
 
-const HOC = Textdomain(translations, pluralForms)(App);
+const HOC = withGettext(translations, pluralForms)(App);
 ```
 
 ```javascript
@@ -128,8 +134,30 @@ function getPluralForms(n) {
     return n > 1 ? 1 : 0;
 }
 
-const HOC = Textdomain(getTranslations, getPluralForms)(App);
+const HOC = withGettext(getTranslations, getPluralForms)(App);
 ```
+
+As an alternative you can pass translations and plural form as properties to higher-order-component, like this:
+
+```javascript
+function getTranslations() {
+    return {
+        'Some text': 'Some translated text',
+        ...
+    };
+}
+
+function getPluralForms(n) {
+    return n > 1 ? 1 : 0;
+}
+
+const HOC = withGettext()(App);
+
+...
+
+ReactDOM.render(<HOC translations={getTranslations} plural={getPluralForms}>...</HOC>, ...);
+```
+
 
 ### gettext(message)
 
@@ -173,9 +201,44 @@ Example:
 this.context.xgettext('some text', 'context where this message is used');
 ```
 
+### nxgettext(singular, plural, n, context)
+
+The function to translate plural string based on a specific context. Accepts singular and plural messages along with a number to calculate plural form against and context string. Returns translated message based on plural form if it exists, otherwise original message based on **n** value.
+
+- **singular**: a string to be translated when count is not plural
+- **plural**: a string to be translated when count is plural
+- **n**: a number to count plural form
+- **context**: A context to search translation in.
+
+Example:
+
+```javascript
+// somewhere in your jsx component
+this.context.nxgettext('day ago', 'days ago', numberOfDays, 'Article publish date');
+```
+
 ## Poedit
 
 If you use Poedit app to translate your messages, then you can use `gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c` as keywords list to properly parse and extract strings from your javascript files.
+
+Here is an example of a **POT** file which you can start with:
+
+```
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ./src\n"
+"X-Poedit-KeywordsList: gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+```
 
 ## Contribute
 
