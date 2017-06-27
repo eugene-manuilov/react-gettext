@@ -61,7 +61,7 @@ To make it translatable you need to update your `app.js` file to use HOC functio
 ```diff
   // app.js
   import React, { Component } from 'react';
-+ import Textdomain from 'react-gettext';
++ import withGettext from 'react-gettext';
   import Header from './Header';
   import Footer from './Footer';
 
@@ -70,7 +70,7 @@ To make it translatable you need to update your `app.js` file to use HOC functio
       ...
   }
 
-+ export default Textdomain({...}, 'n != 1')(App);
++ export default withGettext({...}, 'n != 1')(App);
 ```
 
 After doing it you can start using `gettext`, `ngettext`, `xgettext` and `nxgettext` functions in your descending components:
@@ -102,7 +102,7 @@ After doing it you can start using `gettext`, `ngettext`, `xgettext` and `nxgett
 
 ## Documentation
 
-### Textdomain(translations, pluralForms)
+### withGettext(translations, pluralForms)
 
 Higher-order function which is exported by default from `react-gettext` package. It accepts two arguments and returns function to create higher-order component.
 
@@ -119,7 +119,7 @@ const translations = {
 
 const pluralForms = '(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)'; // 3 plural forms for Russian, Belarusian, Bosnian, Croatian, Serbian, Ukrainian, etc.
 
-const HOC = Textdomain(translations, pluralForms)(App);
+const HOC = withGettext(translations, pluralForms)(App);
 ```
 
 ```javascript
@@ -134,7 +134,7 @@ function getPluralForms(n) {
     return n > 1 ? 1 : 0;
 }
 
-const HOC = Textdomain(getTranslations, getPluralForms)(App);
+const HOC = withGettext(getTranslations, getPluralForms)(App);
 ```
 
 ### gettext(message)
