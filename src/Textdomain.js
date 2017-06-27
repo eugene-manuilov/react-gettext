@@ -15,8 +15,8 @@ class Textdomain extends Component {
 	}
 
 	getTranslations() {
-		const { catalog } = this.props;
-		return typeof catalog === 'function' ? catalog() : catalog;
+		const { translations } = this.props;
+		return typeof translations === 'function' ? translations() : translations;
 	}
 
 	getPluralForm(n) {
@@ -103,7 +103,7 @@ class Textdomain extends Component {
 }
 
 Textdomain.propTypes = {
-	catalog: PropTypes.oneOfType([
+	translations: PropTypes.oneOfType([
 		PropTypes.func,
 		PropTypes.objectOf(PropTypes.oneOfType([
 			PropTypes.string,
@@ -118,7 +118,7 @@ Textdomain.propTypes = {
 };
 
 Textdomain.defaultProps = {
-	catalog: {},
+	translations: {},
 	plural: 'n != 1',
 	children: [],
 };

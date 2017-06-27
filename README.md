@@ -137,6 +137,28 @@ function getPluralForms(n) {
 const HOC = withGettext(getTranslations, getPluralForms)(App);
 ```
 
+As an alternative you can pass translations and plural form as properties to higher-order-component, like this:
+
+```javascript
+function getTranslations() {
+    return {
+        'Some text': 'Some translated text',
+        ...
+    };
+}
+
+function getPluralForms(n) {
+    return n > 1 ? 1 : 0;
+}
+
+const HOC = withGettext()(App);
+
+...
+
+ReactDOM.render(<HOC translations={getTranslations} plural={getPluralForms}>...</HOC>, ...);
+```
+
+
 ### gettext(message)
 
 The function to translate a string. Accepts original message and returns translation if it exists, otherwise original message.

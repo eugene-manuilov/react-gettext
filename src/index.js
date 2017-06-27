@@ -2,7 +2,7 @@ import React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import Textdomain from './Textdomain';
 
-export default function withGettext(translations, pluralForm) {
+export default function withGettext(translations = {}, pluralForm = 'n != 1') {
 	return (WrappedComponent) => {
 		class WithGettext extends Textdomain {
 
@@ -13,7 +13,7 @@ export default function withGettext(translations, pluralForm) {
 		}
 
 		WithGettext.defaultProps = {
-			catalog: translations,
+			translations,
 			plural: pluralForm,
 		};
 
