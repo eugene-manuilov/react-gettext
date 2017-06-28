@@ -114,7 +114,10 @@ Textdomain.propTypes = {
 		PropTypes.func,
 		PropTypes.string,
 	]),
-	children: PropTypes.arrayOf(PropTypes.node),
+	children: PropTypes.oneOfType([
+		PropTypes.node,
+		PropTypes.arrayOf(PropTypes.node),
+	]),
 };
 
 Textdomain.defaultProps = {
