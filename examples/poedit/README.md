@@ -15,3 +15,5 @@ To launch this example on your computer, you will need to install all dependenci
 Whenever you make a change in your static copy inside of your React components, you will need to update your po files and translations in it. You can find all po files in the `languages/LC_MESSAGES` directory. Use [Poedit](https://poedit.net/) application to work with po files on your computer.
 
 Once you finish updating your translations, you need to generate json files from mo files created by Poedit. To do it you will need to run `gettextjs --json ./ ./src/` command and it will convert all mo files into json files. Restart your local dev server and your translations will appear in your browser.
+
+There are two commands in the package.json file which you can use to generate mo files from po files and to generate json files from mo files. It is `gettext:compile` and `gettext:convert` which you can run using npm: `npm run gettext:compile` and `npm run gettext:convert`.
