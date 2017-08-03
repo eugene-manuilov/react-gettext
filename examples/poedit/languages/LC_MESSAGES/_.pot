@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-08-03 14:29+0300\n"
+"POT-Creation-Date: 2017-08-03 14:52+0300\n"
 "PO-Revision-Date: 2017-03-22 20:58+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,6 +17,24 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: components\n"
 
-#: components/Page.js:12
+#: components/Page.js:37
 msgid "I watched the storm, so beautiful yet terrific."
 msgstr ""
+
+#: components/Page.js:40
+msgctxt "A sample text from Google Fonts service"
+msgid "Almost before we knew it, we had left the ground."
+msgstr ""
+
+#: components/Page.js:45
+msgid "hour"
+msgid_plural "hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: components/Page.js:51
+msgctxt "Number of hours"
+msgid "minute"
+msgid_plural "minutes"
+msgstr[0] ""
+msgstr[1] ""
