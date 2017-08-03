@@ -1,0 +1,22 @@
+# smartling.placeholder_format_custom = %s
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-08-03 14:30+0300\n"
+"PO-Revision-Date: 2017-08-03 14:31+0300\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.1\n"
+"X-Poedit-Basepath: ../../src\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"X-Poedit-KeywordsList: gettext;ngettext:1,2;xgettext:1,2c;nxgettext:1,2,4c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"Last-Translator: \n"
+"Language: fr\n"
+"X-Poedit-SearchPath-0: components\n"
+
+#: components/Page.js:12
+msgid "I watched the storm, so beautiful yet terrific."
+msgstr "J'ai regardé la tempête, si belle mais formidable."

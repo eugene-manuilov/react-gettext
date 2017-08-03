@@ -15,7 +15,7 @@ const Menu = () => (
 					<Link to="/fr">French</Link>
 				</li>
 				<li>
-					<Link to="/de">Germany</Link>
+					<Link to="/de">German</Link>
 				</li>
 			</ul>
 		</div>
