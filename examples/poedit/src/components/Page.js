@@ -1,4 +1,5 @@
 import React from 'react';
+import withGettext from 'react-gettext';
 
 const Page = () => (
 	<div className="grid-container">
@@ -10,4 +11,4 @@ const Page = () => (
 	</div>
 );
 
-export default Page;
+export default withGettext()(Page);
