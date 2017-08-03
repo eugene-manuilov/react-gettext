@@ -1,0 +1,15 @@
+{
+	"extends": "airbnb",
+	"rules": {
+		"import/no-extraneous-dependencies": 0,
+		"import/no-unresolved": 0,
+		"import/extensions": 0,
+		"no-tabs": 0,
+		"indent": [2, "tab", { "SwitchCase": 1 }],
+		"react/jsx-indent": [2, "tab"],
+		"react/jsx-filename-extension": 0
+	},
+	"globals": {
+		"document": false
+	}
+}

@@ -3,3 +3,4 @@
 /lib/
 /dist/
 /npm-debug.log
+/examples/poedit/node_modules/
