@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Menu from './components/Menu';
+
 class Application extends Component {
 
 	componentDidMount() {
@@ -7,7 +9,9 @@ class Application extends Component {
 
 	render() {
 		return (
-			<div>App</div>
+			<div>
+				<Menu />
+			</div>
 		);
 	}
 
