@@ -9,7 +9,10 @@
 	},
 	"version": "0.3.1",
 	"scripts": {
-		"start": "webpack-dev-server --config webpack.config.js"
+		"start": "webpack-dev-server --config webpack.config.js",
+		"gettext:convert": "gettextjs --json ./ ./src/",
+		"gettext:compile": "find ./languages/LC_MESSAGES -name \\*.po -execdir sh -c 'msgfmt \"$0\" -o `basename $0 .po`.mo' '{}' \\;",
+		"gettext": "npm run gettext:compile && npm run gettext:convert"
 	},
 	"dependencies": {
 		"babel-cli": "^6.24.1",

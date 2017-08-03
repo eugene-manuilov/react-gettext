@@ -1,9 +1,8 @@
 {
 	"extends": "airbnb",
 	"rules": {
-		"import/no-extraneous-dependencies": 0,
-		"import/no-unresolved": 0,
-		"import/extensions": 0,
+		"import/no-dynamic-require": 0,
+		"global-require": 0,
 		"no-tabs": 0,
 		"indent": [2, "tab", { "SwitchCase": 1 }],
 		"react/jsx-indent": [2, "tab"],
