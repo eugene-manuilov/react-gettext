@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import faker from 'faker';
 
-import withGettext from '../lib/index';
+import withGettext, { Textdomain } from '../lib/index';
 
 describe('Higher-order-component', () => {
 	class baseComponent extends Component {
@@ -39,5 +39,11 @@ describe('Higher-order-component', () => {
 		expect(instance.getPluralForm(1)).toBe(0);
 		expect(instance.getPluralForm(2)).toBe(1);
 		expect(instance.getPluralForm(5)).toBe(2);
+	});
+});
+
+describe('Textdomain', () => {
+	test('named export', () => {
+		expect(typeof Textdomain).toBe('function');
 	});
 });
