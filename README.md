@@ -100,6 +100,8 @@ After doing it you can start using `gettext`, `ngettext`, `xgettext` and `nxgett
 + };
 ```
 
+See an [example](https://github.com/eugene-manuilov/react-gettext/tree/master/examples) application to get better understanding how to use it.
+
 ## Documentation
 
 ### withGettext(translations, pluralForms)
@@ -157,6 +159,8 @@ const HOC = withGettext()(App);
 
 ReactDOM.render(<HOC translations={getTranslations} plural={getPluralForms}>...</HOC>, ...);
 ```
+
+One more alternative is to not create HOC, but use Textdomain component directly. You can import it using `import { Textdomain } from 'react-gettext'` and use it as a regular component which will provide context functions to translate your messages. Just don't forget to pass `translations` and `plural` props to this component when you render it.
 
 
 ### gettext(message)
