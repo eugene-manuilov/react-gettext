@@ -5,3 +5,4 @@
 /npm-debug.log
 /examples/poedit/node_modules/
 /examples/poedit/**/*.mo
+/package-lock.json
