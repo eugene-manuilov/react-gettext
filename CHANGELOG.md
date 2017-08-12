@@ -4,7 +4,8 @@
 
 **Implemented enhancements:**
 
--
+- Updated dev dependencies to use latest versions.
+- Updated hoist-non-react-statics peer dependency to support version 2+.
 
 ## v0.3.2 (2017-08-04)
 
