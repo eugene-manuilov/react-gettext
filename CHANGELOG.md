@@ -1,5 +1,11 @@
 # Change Log
 
+## v0.3.3 (2017-08-12)
+
+**Implemented enhancements:**
+
+-
+
 ## v0.3.2 (2017-08-04)
 
 **Implemented enhancements:**

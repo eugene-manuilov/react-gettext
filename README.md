@@ -1,4 +1,4 @@
-# react-gettext 0.3.2
+# react-gettext 0.3.3
 
 [![Build Status](https://travis-ci.org/eugene-manuilov/react-gettext.svg?branch=master)](https://travis-ci.org/eugene-manuilov/react-gettext)
 
