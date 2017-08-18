@@ -5,8 +5,18 @@ import Textdomain from './Textdomain';
 const withGettext = (translations = {}, pluralForm = 'n != 1') => (WrappedComponent) => {
 	class WithGettext extends Textdomain {
 
+		constructor(props) {
+			super(props);
+			this.wrappedComponent = null;
+		}
+
+		getWrappedComponent() {
+			return this.wrappedComponent;
+		}
+
 		render() {
-			return React.createElement(WrappedComponent, this.props);
+			this.wrappedComponent = React.createElement(WrappedComponent, this.props);
+			return this.wrappedComponent;
 		}
 
 	}
