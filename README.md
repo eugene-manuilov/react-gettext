@@ -104,12 +104,14 @@ See an [example](https://github.com/eugene-manuilov/react-gettext/tree/master/ex
 
 ## Documentation
 
-### withGettext(translations, pluralForms)
+### withGettext(translations, pluralForms, options)
 
 Higher-order function which is exported by default from `react-gettext` package. It accepts two arguments and returns function to create higher-order component.
 
 - **translations**: a hash object or a function which returns hash object where keys are original messages and values are translated messages.
 - **pluralForms**: a string to calculate plural form (used by [Gettext PO](http://docs.translatehouse.org/projects/localization-guide/en/latest/l10n/pluralforms.html?id=l10n/pluralforms)) or a function which accepts a number and calculates a plural form number. Pay attentions that plural forms are zero-based what means to get 1st plural form it should return 0, to get 2nd - 1, and so on.
+- **options**: a hash object with options. Currently supports following options:
+  - **withRef**: an optional boolean flag that determines whether or not to set `ref` property to a wrapped component what will allow you to get wrapped component instance by calling `getWrappedComponent()` function of the HOC. By default: `FALSE`.
 
 Example:
 

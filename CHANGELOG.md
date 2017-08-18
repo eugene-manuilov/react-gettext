@@ -4,7 +4,7 @@
 
 **Implemented enhancements:**
 
-- 
+- Implemented ability to get wrapped component.
 
 ## v0.3.3 (2017-08-12)
 
