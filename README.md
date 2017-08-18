@@ -1,6 +1,6 @@
 # react-gettext 0.4.0
 
-[![Build Status](https://travis-ci.org/eugene-manuilov/react-gettext.svg?branch=master)](https://travis-ci.org/eugene-manuilov/react-gettext)
+[![npm version](https://badge.fury.io/js/react-gettext.svg)](https://badge.fury.io/js/react-gettext) [![Build Status](https://travis-ci.org/eugene-manuilov/react-gettext.svg?branch=master)](https://travis-ci.org/eugene-manuilov/react-gettext)
 
 Tiny React library for implementing gettext localization in your application. It provides HOC function to enhance your application by exposing gettext functions in the context scope.
 
