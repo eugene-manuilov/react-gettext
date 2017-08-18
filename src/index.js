@@ -2,21 +2,22 @@ import React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import Textdomain from './Textdomain';
 
-const withGettext = (translations = {}, pluralForm = 'n != 1') => (WrappedComponent) => {
+const withGettext = (translations = {}, pluralForm = 'n != 1', options = {}) => (WrappedComponent) => {
+	const args = Object.assign({ withRef: false }, options);
+
 	class WithGettext extends Textdomain {
 
-		constructor(props) {
-			super(props);
-			this.wrappedComponent = null;
-		}
-
 		getWrappedComponent() {
-			return this.wrappedComponent;
+			return this.refs.wrappedComponent;
 		}
 
 		render() {
-			this.wrappedComponent = React.createElement(WrappedComponent, this.props);
-			return this.wrappedComponent;
+			const newprops = Object.assign({}, this.props);
+			if (args.withRef) {
+				newprops.ref = 'wrappedComponent';
+			}
+
+			return React.createElement(WrappedComponent, newprops);
 		}
 
 	}
