@@ -1,5 +1,11 @@
 # Change Log
 
+## v0.4.0 (2017-08-17)
+
+**Implemented enhancements:**
+
+- Implemented ability to get wrapped component.
+
 ## v0.3.3 (2017-08-12)
 
 **Implemented enhancements:**

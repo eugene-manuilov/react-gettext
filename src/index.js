@@ -2,25 +2,35 @@ import React from 'react';
 import hoistNonReactStatic from 'hoist-non-react-statics';
 import Textdomain from './Textdomain';
 
-export { Textdomain };
+const withGettext = (translations = {}, pluralForm = 'n != 1', options = {}) => (WrappedComponent) => {
+	const args = Object.assign({ withRef: false }, options);
 
-export default function withGettext(translations = {}, pluralForm = 'n != 1') {
-	return (WrappedComponent) => {
-		class WithGettext extends Textdomain {
+	class WithGettext extends Textdomain {
 
-			render() {
-				return React.createElement(WrappedComponent, this.props);
-			}
-
+		getWrappedComponent() {
+			return this.refs.wrappedComponent;
 		}
 
-		WithGettext.defaultProps = {
-			translations,
-			plural: pluralForm,
-		};
+		render() {
+			const newprops = Object.assign({}, this.props);
+			if (args.withRef) {
+				newprops.ref = 'wrappedComponent';
+			}
 
-		WithGettext.displayName = `withGettext(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+			return React.createElement(WrappedComponent, newprops);
+		}
 
-		return hoistNonReactStatic(WithGettext, WrappedComponent);
+	}
+
+	WithGettext.defaultProps = {
+		translations,
+		plural: pluralForm,
 	};
-}
+
+	WithGettext.displayName = `withGettext(${WrappedComponent.displayName || WrappedComponent.name || 'Component'})`;
+
+	return hoistNonReactStatic(WithGettext, WrappedComponent);
+};
+
+export { Textdomain };
+export default withGettext;
