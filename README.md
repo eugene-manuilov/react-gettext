@@ -246,6 +246,11 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 ```
 
+If you prefer using npm script, please add this to your package.json file. Make sure correct `project path` and  `output` path is set.
+```
+"gettext:extract": "find /path/to/project -name \"*.js\" | xargs xgettext --from-code=UTF-8 --language=JavaScript --keyword=gettext --keyword=ngettext:1,2 --keyword=xgettext:1,2c --keyword=nxgettext:1,2,4c --output=/path/to/project/projectname.pot --sort-by-file --package-name=\"My Project Name\" --package-version=\"1.0.0\""
+```
+
 ## Contribute
 
 What to help or have a suggestion? Open a [new ticket](https://github.com/eugene-manuilov/react-gettext/issues/new) and we can discuss it or submit pull request. Please, make sure you run `npm test` before submitting a pull request.
