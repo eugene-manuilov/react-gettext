@@ -1,5 +1,9 @@
 # Change Log
 
+## v1.0.0 (2019-07-15)
+
+- 
+
 ## v0.4.0 (2017-08-17)
 
 **Implemented enhancements:**

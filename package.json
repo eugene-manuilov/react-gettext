@@ -7,7 +7,7 @@
 	"bugs": {
 		"url": "https://github.com/eugene-manuilov/react-gettext/issues"
 	},
-	"version": "0.4.0",
+	"version": "1.0.0",
 	"main": "lib/index",
 	"files": [
 		"*.md",
