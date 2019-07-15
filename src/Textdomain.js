@@ -23,7 +23,7 @@ class Textdomain extends Component {
 		const { plural } = this.props;
 
 		// return 0 if n is not integer
-		if (isNaN(parseInt(n, 10))) {
+		if (Number.isNaN(parseInt(n, 10))) {
 			return 0;
 		}
 
@@ -97,7 +97,8 @@ class Textdomain extends Component {
 	}
 
 	render() {
-		return this.props.children;
+		const { children } = this.props;
+		return children;
 	}
 
 }
