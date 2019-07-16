@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import withGettext from 'react-gettext';
+
+import withGettext from '../../../../src/index.js';
 
 class Page extends Component {
 
