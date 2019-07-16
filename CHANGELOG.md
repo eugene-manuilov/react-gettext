@@ -2,7 +2,7 @@
 
 ## v1.0.0 (2019-07-15)
 
-- 
+- Implemented TextdomainContext context that adheres the current version of Context APIs.
 
 ## v0.4.0 (2017-08-17)
 
