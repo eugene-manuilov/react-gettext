@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import withGettext from 'react-gettext';
+import { TextdomainContext } from '../../../../src';
 
 class Page extends Component {
 
@@ -59,11 +58,6 @@ class Page extends Component {
 
 }
 
-Page.contextTypes = {
-	gettext: PropTypes.func.isRequired,
-	xgettext: PropTypes.func.isRequired,
-	ngettext: PropTypes.func.isRequired,
-	nxgettext: PropTypes.func.isRequired,
-};
+Page.contextType = TextdomainContext;
 
-export default withGettext()(Page);
+export default Page;
