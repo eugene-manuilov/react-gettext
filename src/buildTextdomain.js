@@ -7,10 +7,10 @@ import {
 
 function buildTextdomain(translations = {}, plural = 'n != 1') {
 	return {
-		gettext: gettext.bind(translations),
-		ngettext: ngettext.bind(translations, plural),
-		xgettext: xgettext.bind(translations),
-		nxgettext: nxgettext.bind(translations, plural),
+		gettext: gettext.bind(null, translations),
+		ngettext: ngettext.bind(null, translations, plural),
+		xgettext: xgettext.bind(null, translations),
+		nxgettext: nxgettext.bind(null, translations, plural),
 	};
 }
 

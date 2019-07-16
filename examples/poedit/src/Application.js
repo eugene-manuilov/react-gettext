@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import { TextdomainContext, buildTextdomain } from '../../../src';
 
 import Menu from './components/Menu';
 import Page from './components/Page';
 
 class Application extends Component {
 
-	static renderPage(route) {
-		const { language } = route.match.params;
+	static getTextdomain({ match }) {
+		const { params } = match || {};
+		const { language } = params || {};
 
 		let pofile = {
 			catalog: {},
@@ -20,21 +23,41 @@ class Application extends Component {
 			// do nothing, default pofile will be used
 		}
 
-		return <Page translations={pofile.catalog} plural={pofile.plural} />;
+		return buildTextdomain(pofile.catalog, pofile.plural);
+	}
+
+	constructor(props) {
+		super(props);
+		this.state = { textdomain: Application.getTextdomain(props) };
+	}
+
+	componentDidUpdate(prevProps) {
+		const { match: prevMatch } = prevProps || {};
+		const { params: prevParams } = prevMatch || {};
+		const { language: prevLanguage } = prevParams || {};
+
+		const { match: newMatch } = this.props;
+		const { params: newParams } = newMatch || {};
+		const { language: newLanguage } = newParams || {};
+
+		if ( newLanguage !== prevLanguage ) {
+			this.setState({ textdomain: Application.getTextdomain(this.props) });
+		}
 	}
 
 	render() {
 		return (
-			<div>
+			<TextdomainContext.Provider value={this.state.textdomain}>
 				<Menu />
-				<Switch>
-					<Route path="/:language" render={Application.renderPage} />
-					<Redirect from="/" to="/en" />
-				</Switch>
-			</div>
+				<Page />
+			</TextdomainContext.Provider>
 		);
 	}
 
 }
 
-export default withRouter(Application);
+Application.propTypes = {
+	match: PropTypes.object.isRequired,
+};
+
+export default Application;
