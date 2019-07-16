@@ -2,7 +2,7 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import faker from 'faker';
 
-import withGettext, { Textdomain } from '../lib/index';
+import withGettext from '../lib';
 
 describe('Higher-order-component', () => {
 	class baseComponent extends Component {
@@ -32,18 +32,5 @@ describe('Higher-order-component', () => {
 			xgettext: PropTypes.func,
 			nxgettext: PropTypes.func,
 		});
-	});
-
-	test('properly calculates plural form', () => {
-		const instance = new Textdomain({plural});
-		expect(instance.getPluralForm(1)).toBe(0);
-		expect(instance.getPluralForm(2)).toBe(1);
-		expect(instance.getPluralForm(5)).toBe(2);
-	});
-});
-
-describe('Textdomain', () => {
-	test('named export', () => {
-		expect(typeof Textdomain).toBe('function');
 	});
 });

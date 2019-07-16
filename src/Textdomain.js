@@ -1,6 +1,13 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import {
+	gettext,
+	ngettext,
+	xgettext,
+	nxgettext,
+} from './gettext';
+
 class Textdomain extends Component {
 
 	getChildContext() {
@@ -14,90 +21,29 @@ class Textdomain extends Component {
 		};
 	}
 
-	getTranslations() {
-		const { translations } = this.props;
-		return typeof translations === 'function' ? translations() : translations;
-	}
-
-	getPluralForm(n) {
-		const { plural } = this.props;
-
-		// return 0 if n is not integer
-		if (isNaN(parseInt(n, 10))) {
-			return 0;
-		}
-
-		// if pluralForm is function, use it to get plural form index
-		if (typeof plural === 'function') {
-			return plural(n);
-		}
-
-		// if pluralForm is string and contains only "n", "0-9", " ", "!=?:%+-/*><&|()"
-		// characters, then we can "eval" it to calculate plural form
-		if (typeof plural === 'string' && !plural.match(/[^n0-9 !=?:%+-/*><&|()]/i)) {
-			/* eslint-disable no-new-func */
-			const calcPlural = Function('n', `return ${plural}`);
-			/* eslint-enable no-new-func */
-			return +calcPlural(n);
-		}
-
-		return 0;
-	}
-
-	getDelimiter() {
-		return '\u0004'; // End of Transmission (EOT)
-	}
-
 	gettext(message) {
-		const messages = this.getTranslations();
-		return Object.prototype.hasOwnProperty.call(messages, message)
-			? messages[message]
-			: message;
+		const { translations } = this.props;
+		return gettext(translations, message);
 	}
 
 	ngettext(singular, plural, n) {
-		const self = this;
-		const messages = self.getTranslations();
-		const pluralIndex = self.getPluralForm(n);
-		const defaultValue = n > 1 ? plural : singular;
-
-		return Object.prototype.hasOwnProperty.call(messages, singular)
-				&& Array.isArray(messages[singular])
-				&& messages[singular].length > pluralIndex
-				&& pluralIndex >= 0
-			? messages[singular][pluralIndex]
-			: defaultValue;
+		const { translations, plural: plurality } = this.props;
+		return ngettext(translations, plurality, singular, plural, n);
 	}
 
 	xgettext(message, context) {
-		const self = this;
-		const EOT = self.getDelimiter();
-		const messages = self.getTranslations();
-		const key = context + EOT + message;
-
-		return Object.prototype.hasOwnProperty.call(messages, key)
-			? messages[key]
-			: message;
+		const { translations } = this.props;
+		return xgettext(translations, message, context);
 	}
 
 	nxgettext(singular, plural, n, context) {
-		const self = this;
-		const messages = self.getTranslations();
-		const pluralIndex = self.getPluralForm(n);
-		const defaultValue = n > 1 ? plural : singular;
-		const EOT = self.getDelimiter();
-		const key = context + EOT + singular;
-
-		return Object.prototype.hasOwnProperty.call(messages, key)
-				&& Array.isArray(messages[key])
-				&& messages[key].length > pluralIndex
-				&& pluralIndex >= 0
-			? messages[key][pluralIndex]
-			: defaultValue;
+		const { translations, plural: plurality } = this.props;
+		return nxgettext(translations, plurality, singular, plural, n, context);
 	}
 
 	render() {
-		return this.props.children;
+		const { children } = this.props;
+		return children;
 	}
 
 }

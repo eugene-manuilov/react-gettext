@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
-
-import './styles/core.scss';
+import { Switch, Route, Redirect, BrowserRouter } from 'react-router-dom';
 
 import Application from './Application';
 
 ReactDOM.render(
 	(
 		<BrowserRouter>
-			<Application />
+			<Switch>
+				<Route path="/:language" component={Application} />
+				<Redirect from="/" to="/en" />
+			</Switch>
 		</BrowserRouter>
 	),
 	document.getElementById('app'),

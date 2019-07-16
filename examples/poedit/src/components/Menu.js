@@ -9,7 +9,7 @@ const Menu = () => (
 					Poedit Example
 				</li>
 				<li>
-					<Link to="/">English</Link>
+					<Link to="/en">English</Link>
 				</li>
 				<li>
 					<Link to="/fr">French</Link>
