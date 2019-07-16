@@ -8,7 +8,7 @@
 		"url": "https://github.com/eugene-manuilov/react-gettext/issues"
 	},
 	"version": "1.0.0",
-	"main": "lib/index",
+	"main": "lib/index.js",
 	"files": [
 		"*.md",
 		"dist",
