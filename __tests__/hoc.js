@@ -33,11 +33,4 @@ describe('Higher-order-component', () => {
 			nxgettext: PropTypes.func,
 		});
 	});
-
-	test('properly calculates plural form', () => {
-		const instance = new Textdomain({plural});
-		expect(instance.getPluralForm(1)).toBe(0);
-		expect(instance.getPluralForm(2)).toBe(1);
-		expect(instance.getPluralForm(5)).toBe(2);
-	});
 });
