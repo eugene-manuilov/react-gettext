@@ -368,7 +368,7 @@ If you prefer using npm scripts, then you can add the following command to your 
 
 ## Contribute
 
-What to help or have a suggestion? Open a [new ticket](https://github.com/eugene-manuilov/react-gettext/issues/new) and we can discuss it or submit pull request. Please, make sure you run `npm test` before submitting a pull request.
+Want to help or have a suggestion? Open a [new ticket](https://github.com/eugene-manuilov/react-gettext/issues/new) and we can discuss it or submit pull request. Please, make sure you run `npm test` before submitting a pull request.
 
 ## License
 
