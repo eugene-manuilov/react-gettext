@@ -1,4 +1,4 @@
-# react-gettext 1.0.0
+# react-gettext 1.0.1
 
 [![npm version](https://badge.fury.io/js/react-gettext.svg)](https://badge.fury.io/js/react-gettext) [![Build Status](https://travis-ci.org/eugene-manuilov/react-gettext.svg?branch=master)](https://travis-ci.org/eugene-manuilov/react-gettext)
 

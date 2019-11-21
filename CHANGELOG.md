@@ -1,5 +1,10 @@
 # Change Log
 
+## v1.0.1 (2019-11-21)
+
+- Fixed babel-preset-env browser targets
+- Updated dependencies to the latest versions
+
 ## v1.0.0 (2019-07-15)
 
 - Implemented TextdomainContext context that adheres the current version of Context APIs.
