@@ -30,7 +30,7 @@
 		"build:commonjs": "mkdir -p lib && babel ./src -d lib",
 		"build:umd": "webpack --output-filename=react-gettext.js",
 		"build:umd:min": "NODE_ENV=production webpack --output-filename=react-gettext.min.js",
-		"test": "jest",
+		"test": "BABEL_ENV=test jest",
 		"prepublish": "npm run build"
 	},
 	"devDependencies": {
