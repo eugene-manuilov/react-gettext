@@ -47,6 +47,8 @@ config.module = {
 			use: {
 				loader: 'babel-loader',
 				options: {
+					babelrc: false,
+					configFile: false,
 					cacheDirectory: true,
 					presets: [
 						'@babel/preset-env',

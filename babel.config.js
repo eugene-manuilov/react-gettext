@@ -3,7 +3,7 @@ const targets = BABEL_ENV === 'test' ? { node: 6 } : { browsers: 'defaults' };
 
 module.exports = {
 	presets: [
-		['@babel/preset-env', { targets } ],
+		['@babel/preset-env', { targets }],
 		'@babel/preset-react',
 	],
 };
