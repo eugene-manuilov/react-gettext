@@ -1,9 +1,13 @@
-# Change Log
+# Changelog
+
+## v1.0.2 (2020-10-18)
+
+- Updated dependencies to the latest versions.
 
 ## v1.0.1 (2019-11-21)
 
-- Fixed babel-preset-env browser targets
-- Updated dependencies to the latest versions
+- Fixed babel-preset-env browser targets.
+- Updated dependencies to the latest versions.
 
 ## v1.0.0 (2019-07-15)
 
